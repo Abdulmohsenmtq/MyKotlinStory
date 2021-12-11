@@ -21,4 +21,6 @@ class MainActivity : AppCompatActivity() {
     private fun connectViews(){
         textViewEmail = findViewById(R.id.tvEmail)
     }
+
+
 }
