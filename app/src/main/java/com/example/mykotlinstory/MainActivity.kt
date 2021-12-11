@@ -22,9 +22,4 @@ class MainActivity : AppCompatActivity() {
         textViewEmail = findViewById(R.id.tvEmail)
     }
 
-
-
-
-
-
 }
