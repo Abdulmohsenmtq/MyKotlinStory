@@ -39,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
         buttonLogin?.setOnClickListener {
             val username = editTextUsername?.text.toString()
             val password = editTextPassword?.text.toString()
-
             val user = User(username, password)
             for (userArryay in arr) {
                 if (userArryay.email == user.email && userArryay.password == user.password) {
