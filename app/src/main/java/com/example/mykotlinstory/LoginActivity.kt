@@ -1,5 +1,6 @@
 package com.example.mykotlinstory
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -21,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
 
         connectView()
         logon()
+//        checkFields()
     }
 
     private fun connectView(){
@@ -41,23 +43,27 @@ class LoginActivity : AppCompatActivity() {
             val user = User(username, password)
             for (userArryay in arr) {
                 if (userArryay.email == user.email && userArryay.password == user.password) {
-                    Toast.makeText(this, "Welcome ${user.email}", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, "Welcome ${user.email}", Toast.LENGTH_LONG).show()
+                    finish()
+                    val i = Intent(this,MainActivity::class.java)
+                    i.putExtra("email",userArryay.email)
+                    startActivity(i)
                     break
                 } else {
                     Toast.makeText(this, "Chick your Entry", Toast.LENGTH_LONG).show()
                 }
             }
         }
-//                    buttonLogin?.setOnClickListener {
-//                if (editTextUsername?.text?.isEmpty() == true
-//                    || editTextPassword?.text?.isEmpty() == true
-//                    || checkboxView?.isChecked != true
-//                ) {
-//                    Toast.makeText(this, "Filed to login", Toast.LENGTH_LONG).show()
-//                } else {
-//                    Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
-//                }
-//            }
 
+
+    }
+    private fun checkFields(){
+                            buttonLogin?.setOnClickListener {
+                if (editTextUsername?.text?.isEmpty() == true){
+                    editTextUsername?.setError("Enter your email")
+                } else if(editTextPassword?.text?.isEmpty() == true){
+                    editTextPassword?.setError("Enter your password")
+                }
+            }
     }
 }
