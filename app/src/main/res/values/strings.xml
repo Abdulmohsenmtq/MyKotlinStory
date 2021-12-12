@@ -4,5 +4,9 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="i_accept_terms">I accept terms and condition</string>
+    <string name="home">Home</string>
+    <string name="logout">Logout</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>
