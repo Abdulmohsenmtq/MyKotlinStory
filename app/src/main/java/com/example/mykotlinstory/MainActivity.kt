@@ -9,6 +9,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private var drawerLayout:DrawerLayout? = null
     private var toolbarView:Toolbar? = null
     private var navigationView:NavigationView? = null
+    private var recyclerView:RecyclerView? = null
+    private var buttonAddStory:FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         setupDrawer()
         updateEmailInHeader(email!!)
         drawerClicks()
+        openAddStoryActivity()
+        displayStory()
 
     }
     private fun updateEmailInHeader(email:String){
@@ -62,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer)
         toolbarView = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navView)
+        recyclerView = findViewById(R.id.storiesRecyclerView)
+        buttonAddStory = findViewById(R.id.btAddStory)
     }
     private fun drawerClicks(){
         navigationView?.setNavigationItemSelectedListener {
@@ -79,6 +87,27 @@ class MainActivity : AppCompatActivity() {
                 else -> true
             }
         }
+    }
+
+    private fun openAddStoryActivity(){
+        buttonAddStory?.setOnClickListener {
+            val i = Intent(this,AddStoryActivity::class.java)
+            startActivity(i)
+        }
+    }
+    private fun displayStory(){
+       val storiesArray = ArrayList<Story>()
+        storiesArray.add(
+            Story(getString(R.string.story1_title)
+            ,getString(R.string.story1_subtitle),getString(R.string.story1_desc)))
+        storiesArray.add(Story("This is the second story"
+            ,"this is second subtitle","Welcome to my kotlin coding Story"))
+        storiesArray.add(Story("This is the third story"
+            ,"this is third subtitle","Welcome to my kotlin coding Story"))
+
+        val customAdapter = CustomAdapter(storiesArray,this)
+        recyclerView?.adapter = customAdapter
+
     }
 
 }
