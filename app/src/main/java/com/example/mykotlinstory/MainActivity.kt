@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home ->{
@@ -62,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             else -> true
         }
     }
-
     private fun connectViews(){
         textViewEmail = findViewById(R.id.tvEmail)
         drawerLayout = findViewById(R.id.drawer)
@@ -88,7 +86,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun openAddStoryActivity(){
         buttonAddStory?.setOnClickListener {
             val i = Intent(this,AddStoryActivity::class.java)
