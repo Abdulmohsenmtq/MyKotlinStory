@@ -34,10 +34,15 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupDrawer()
-        updateEmailInHeader(email!!)
+        try {
+            updateEmailInHeader(email!!)
+        }catch (e:NullPointerException){
+
+        }
         drawerClicks()
         openAddStoryActivity()
         displayStory()
+
 
     }
     private fun updateEmailInHeader(email:String){
@@ -102,8 +107,23 @@ class MainActivity : AppCompatActivity() {
         storiesArray.add(Story("This is the third story"
             ,"this is third subtitle","Welcome to my kotlin coding Story"))
 
+
+
         val customAdapter = CustomAdapter(storiesArray,this)
         recyclerView?.adapter = customAdapter
+
+        if(intent.getStringExtra("title") != null){
+            val title = intent.getStringExtra("title")
+            val subTitle = intent.getStringExtra("subtitle")
+            val desc = intent.getStringExtra("desc")
+
+            val newStory = Story(title!!,subTitle!!,desc!!)
+
+            storiesArray.add(newStory)
+            customAdapter.notifyDataSetChanged()
+
+        }
+
 
     }
 

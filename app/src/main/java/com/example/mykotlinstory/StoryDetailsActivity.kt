@@ -2,10 +2,40 @@ package com.example.mykotlinstory
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 
 class StoryDetailsActivity : AppCompatActivity() {
+
+    private var toolbarView:Toolbar? = null
+    private var textViewStoryDesc:TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story_details)
+
+        connectViews()
+        // this line to display the toolbar
+        setSupportActionBar(toolbarView)
+        // this line to display back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Receive data
+        val title = intent.getStringExtra("title")
+        val description = intent.getStringExtra("desc")
+
+        supportActionBar?.title = title
+
+        toolbarView?.setNavigationOnClickListener {
+            onBackPressed()
+        }
+        textViewStoryDesc?.text = description
+        textViewStoryDesc?.movementMethod = ScrollingMovementMethod()
+
+    }
+
+    private fun connectViews(){
+        toolbarView = findViewById(R.id.toolbar)
+        textViewStoryDesc = findViewById(R.id.tvDesc)
     }
 }
