@@ -53,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Chick your Entry", Toast.LENGTH_LONG).show()
                 }
             }
+            if (editTextUsername?.text?.isEmpty() == true){
+                editTextUsername?.setError("Enter your email")
+            } else if(editTextPassword?.text?.isEmpty() == true){
+                editTextPassword?.setError("Enter your password")
+            }
         }
 
 
