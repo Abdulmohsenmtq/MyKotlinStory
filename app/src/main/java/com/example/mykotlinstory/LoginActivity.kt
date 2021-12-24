@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.Toast
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
 //        checkFields()
     }
 
+    // connecting views from activity_login layout to LoginActivity
     private fun connectView(){
         editTextUsername = findViewById(R.id.etUsername)
         editTextPassword = findViewById(R.id.etPassword)
@@ -33,14 +34,18 @@ class LoginActivity : AppCompatActivity() {
 
     }
     private fun logon(){
+        // adding user
         val arr:ArrayList<User> = ArrayList()
         arr.add(User("mohsen@test.com","1234"))
         arr.add(User("mohsen2@test.com","1234"))
         arr.add(User("mohsen3@test.com","1234"))
+
+        //set actions for login buttons
         buttonLogin?.setOnClickListener {
             val username = editTextUsername?.text.toString()
             val password = editTextPassword?.text.toString()
             val user = User(username, password)
+           // this for lop is checking user and password
             for (userArryay in arr) {
                 if (userArryay.email == user.email && userArryay.password == user.password) {
 //                    Toast.makeText(this, "Welcome ${user.email}", Toast.LENGTH_LONG).show()
@@ -49,26 +54,29 @@ class LoginActivity : AppCompatActivity() {
                     i.putExtra("email",userArryay.email)
                     startActivity(i)
                     break
-                } else {
-                    Toast.makeText(this, "Chick your Entry", Toast.LENGTH_LONG).show()
                 }
+//                else
+//                {
+//                      Toast.makeText(this, "Chick your Entry", Toast.LENGTH_LONG).show()
+//                }
             }
+            // This condation will make error msg if there no entry
             if (editTextUsername?.text?.isEmpty() == true){
-                editTextUsername?.setError("Enter your email")
+                editTextUsername?.error = "Enter your email"
             } else if(editTextPassword?.text?.isEmpty() == true){
-                editTextPassword?.setError("Enter your password")
+                editTextPassword?.error = "Enter your password"
             }
         }
 
 
     }
-    private fun checkFields(){
-                            buttonLogin?.setOnClickListener {
-                if (editTextUsername?.text?.isEmpty() == true){
-                    editTextUsername?.setError("Enter your email")
-                } else if(editTextPassword?.text?.isEmpty() == true){
-                    editTextPassword?.setError("Enter your password")
-                }
-            }
-    }
+//    private fun checkFields(){
+//                            buttonLogin?.setOnClickListener {
+//                if (editTextUsername?.text?.isEmpty() == true){
+//                    editTextUsername?.setError("Enter your email")
+//                } else if(editTextPassword?.text?.isEmpty() == true){
+//                    editTextPassword?.setError("Enter your password")
+//                }
+//            }
+//    }
 }
