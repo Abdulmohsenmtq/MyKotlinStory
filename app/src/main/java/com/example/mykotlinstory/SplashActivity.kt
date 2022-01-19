@@ -19,6 +19,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.myLooper()!!).postDelayed({
             // this function will delete the splash activity from memory
             finish()
+            //This will transit to LoginActivity
             val i = Intent(this,LoginActivity::class.java)
             startActivity(i)
         },6000)

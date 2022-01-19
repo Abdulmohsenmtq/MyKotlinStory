@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 //                      Toast.makeText(this, "Chick your Entry", Toast.LENGTH_LONG).show()
 //                }
             }
-            // This condation will make error msg if there no entry
+            // This condition will make error msg if there no entry from user
             if (editTextUsername?.text?.isEmpty() == true){
                 editTextUsername?.error = "Enter your email"
             } else if(editTextPassword?.text?.isEmpty() == true){
